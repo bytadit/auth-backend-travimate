@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // database
-const db = require("./app/models");
+const db = require("./api/models");
 const Role = db.role;
 const PORT = process.env.PORT || 8080;
 
@@ -26,8 +26,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Express API is Ready" });
 });
 // routes
-require("./app/routes/auth.routes")(app);
-require("./app/routes/user.routes")(app);
+require("./api/routes/auth.routes")(app);
+require("./api/routes/user.routes")(app);
 
 swagger(app);
 
