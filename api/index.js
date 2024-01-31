@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const swagger = require('./swagger'); // Import the Swagger configuration
+const swagger = require('./../swagger'); // Import the Swagger configuration
 const app = express();
 const corsOptions = {
   origin: "http://localhost:8081",
@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // database
-const db = require("./api/models");
+const db = require("./models");
 const Role = db.role;
 const PORT = process.env.PORT || 8080;
 
@@ -26,8 +26,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Express API is Ready" });
 });
 // routes
-require("./api/routes/auth.routes")(app);
-require("./api/routes/user.routes")(app);
+require("./routes/auth.routes")(app);
+require("./routes/user.routes")(app);
 
 swagger(app);
 
