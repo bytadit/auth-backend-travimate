@@ -2,7 +2,7 @@ const db = require("../models");
 const ROLES = db.ROLES;
 const User = db.user;
 
-checkDuplicateUsernameOrEmail = (req, res, next) => {
+const checkDuplicateUsernameOrEmail = (req, res, next) => {
   // Username
   if (!req.body.username || req.body.username.trim() === "") {
     res.status(400).send({
@@ -53,7 +53,7 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
   });
 };
 
-checkRolesExisted = (req, res, next) => {
+const checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {
       if (!ROLES.includes(req.body.roles[i])) {
@@ -67,7 +67,7 @@ checkRolesExisted = (req, res, next) => {
   next();
 };
 
-validatePassword = (req, res, next) => {
+const validatePassword = (req, res, next) => {
     // Password validation
     if (!req.body.password || req.body.password.trim() === "") {
       res.status(400).send({

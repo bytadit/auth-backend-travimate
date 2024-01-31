@@ -4,7 +4,7 @@ const db = require("../models");
 const User = db.user;
 
 let invalidTokens = new Set();
-verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
 
   if (!token) {
@@ -29,7 +29,7 @@ verifyToken = (req, res, next) => {
   });
 };
 
-isAdmin = (req, res, next) => {
+const isAdmin = (req, res, next) => {
   User.findByPk(req.userId).then((user) => {
     user.getRoles().then((roles) => {
       for (let i = 0; i < roles.length; i++) {
@@ -46,7 +46,7 @@ isAdmin = (req, res, next) => {
   });
 };
 
-isUser = (req, res, next) => {
+const isUser = (req, res, next) => {
   const userId = req.params.id; // assuming the user id is in the request parameters
 
   if (req.userId == userId) {
