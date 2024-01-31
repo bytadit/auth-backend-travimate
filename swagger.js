@@ -9,15 +9,6 @@ const options = {
       version: "0.1.0",
       description:
         "This is Authentication API Documentation for Travimate App documented with Swagger",
-      license: {
-        name: "MIT",
-        url: "https://spdx.org/licenses/MIT.html",
-      },
-      contact: {
-        name: "Travimate",
-        url: "https://travimate.com",
-        email: "info@travimate.com",
-      },
     },
     servers: [
       {
@@ -31,5 +22,5 @@ const options = {
 const specs = swaggerJsdoc(options);
 
 module.exports = (app) => {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
 };
